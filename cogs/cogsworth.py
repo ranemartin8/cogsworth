@@ -6,13 +6,55 @@ import logging
 import requests
 import re
 import pprint
-
+import json
 
 class anothercog:
     """This is a cog."""
 
     def __init__(self, bot):
         self.bot = bot
+    @commands.command(pass_context=True)
+    async def findsyn(self,ctx, *, champs: str):
+        """finds syneries"""
+        #print(len(champs))
+        if len(champs) > 0:
+            with open('data.json') as data_file:
+                data = json.load(Synergies.json)
+            import os
+            dir_path = os.path.dirname(os.path.realpath(__file__))
+            pprint(data)
+            url = 'https://raw.githubusercontent.com/ranemartin8/cogsworth/master/Synergies.json'
+            async with aiohttp.get(url) as response:
+                synergies = await response.json()
+            try:
+                champs_list = champs.split(",")
+                #syn_text = ''
+                #out_text = ''
+                for champ in champs_list:
+                    if synergies[champ]:
+                        tochampions = synergies[champ][0]
+                        i = 0
+                        for tochamp in tochampions:
+                            idx = "{}".format(i)
+                            c_line = tochampions[idx]
+                            c_name = c_line[0]
+                            c_syn = c_line[1]
+                            if champ == c_name:
+                                #print(c_name)
+                                tochamp_name = c_name
+                                tochamp_syn = c_syn
+                                #out_text = 'this'
+                            out_text = ' ' + 'Champ: {} - Synergy: {} '.format(tochamp_name,tochamp_syn)
+                            i += 1
+                    else:
+                        await self.bot.say("no synergies found")
+                print(out_text)
+                await self.bot.say("Result: {}".format(out_text))
+
+            except:
+                raise
+        else:
+            await self.bot.say("No champs provided.")
 
     @commands.command(pass_context=True)
     async def syn(self,ctx):

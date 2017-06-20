@@ -8,3 +8,5 @@ data/red/settings.json
 data/red/
 *.log
 data/red/settings.json
+data/red/settings.json
+*.log
