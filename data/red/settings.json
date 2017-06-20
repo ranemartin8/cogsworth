@@ -1,0 +1,14 @@
+{
+    "EMAIL" : null,
+    "OWNER" : "245589956012146688",
+    "PASSWORD" : null,
+    "PREFIXES" : [
+        "-"
+    ],
+    "TOKEN" : "MzI1MTI1NjM4MDQwMzIyMDYw.DCTsZw.YcYBiybFvy9UyzrLSKEyNKfEvw0",
+    "default" : {
+        "ADMIN_ROLE" : "TimeKeeper",
+        "MOD_ROLE" : "Watchmen",
+        "PREFIXES" : []
+    }
+}
