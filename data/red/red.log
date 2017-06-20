@@ -18171,3 +18171,49 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.6/site-packages/aiohttp/connector.py", line 314, in connect
     .format(key, exc.strerror)) from exc
 aiohttp.errors.ClientOSError: [Errno 8] Cannot connect to host discordapp.com:443 ssl:True [nodename nor servname provided, or not known]
+[19/06/2017 22:50] ERROR red <module> 634: Fatal exception, attempting graceful logout
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/discord/gateway.py", line 430, in poll_event
+    msg = yield from self.recv()
+  File "/usr/local/lib/python3.6/site-packages/websockets/protocol.py", line 299, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 4004, reason = Authentication failed..
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "red.py", line 614, in <module>
+    loop.run_until_complete(main(bot))
+  File "/usr/local/Cellar/python3/3.6.1/Frameworks/Python.framework/Versions/3.6/lib/python3.6/asyncio/base_events.py", line 466, in run_until_complete
+    return future.result()
+  File "red.py", line 603, in main
+    yield from bot.connect()
+  File "/usr/local/lib/python3.6/site-packages/discord/client.py", line 448, in connect
+    yield from self.ws.poll_event()
+  File "/usr/local/lib/python3.6/site-packages/discord/gateway.py", line 437, in poll_event
+    raise ConnectionClosed(e) from e
+discord.errors.ConnectionClosed: WebSocket connection is closed: code = 4004, reason = Authentication failed..
+[19/06/2017 22:50] ERROR red <module> 616: Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/discord/http.py", line 258, in static_login
+    data = yield from self.request(Route('GET', '/users/@me'))
+  File "/usr/local/lib/python3.6/site-packages/discord/http.py", line 200, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: UNAUTHORIZED (status code: 401): 401: Unauthorized
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "red.py", line 614, in <module>
+    loop.run_until_complete(main(bot))
+  File "/usr/local/Cellar/python3/3.6.1/Frameworks/Python.framework/Versions/3.6/lib/python3.6/asyncio/base_events.py", line 466, in run_until_complete
+    return future.result()
+  File "red.py", line 599, in main
+    bot=not bot.settings.self_bot)
+  File "/usr/local/lib/python3.6/site-packages/discord/client.py", line 416, in login
+    yield from getattr(self, '_login_' + str(n))(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/discord/client.py", line 346, in _login_1
+    data = yield from self.http.static_login(token, bot=is_bot)
+  File "/usr/local/lib/python3.6/site-packages/discord/http.py", line 262, in static_login
+    raise LoginFailure('Improper token has been passed.') from e
+discord.errors.LoginFailure: Improper token has been passed.
+

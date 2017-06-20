@@ -6,3 +6,5 @@ data/red/settings.json
 data/red/settings.json
 *.log
 data/red/
+*.log
+data/red/settings.json
